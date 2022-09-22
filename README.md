@@ -1,10 +1,4 @@
-# Express API Starter with Typescript
-
-How to use this template:
-
-```sh
-npx create-express-api --typescript --directory my-api-name
-```
+# Storymash API
 
 Includes API Server utilities:
 
@@ -36,8 +30,16 @@ Development utilities:
 
 ## Setup
 
+Install all necessary packages
+
 ```
 npm install
+```
+
+Copy .env.sample in a new file called .env
+
+```
+cp .env.sample .env
 ```
 
 ## Lint
