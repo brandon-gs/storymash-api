@@ -66,6 +66,12 @@ npm run dev
 
   - [ ] Configure husky and lint-stagged
 
+- [ ] Create authentication endpoints
+
+  - [ ] Create activate-account endpoint
+  - [ ] Create login endpoint
+  - [ ] Create logout endpoint
+
 - [ ] Update express-rate-limiter package from [https://www.npmjs.com/package/rate-limiter-flexible](rate-limiter-flexible) or rate-limit-mongo
 
 - [ ] Add some tests when authentication is complete (look the code garden auth example with tests)
