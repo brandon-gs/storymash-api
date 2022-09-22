@@ -30,8 +30,8 @@ const resendActivationSpeedLimiter = slowDown({
 router.post("/register", resendActivationSpeedLimiter, authController.register);
 router.post(
   "/activation-code",
-  resendActivationCodeLimiter,
   resendActivationSpeedLimiter,
+  resendActivationCodeLimiter,
   requireAuth,
   authController.resendActivationCode,
 );
