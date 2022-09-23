@@ -1,7 +1,7 @@
 import { Router } from "express";
 import rateLimit from "express-rate-limit";
 import slowDown from "express-slow-down";
-import { requireAuth } from "../../middlewares";
+import { requireAuth, speedLimiter } from "../../middlewares";
 
 import * as authController from "./auth.controller";
 
@@ -23,10 +23,15 @@ const resendActivationCodeLimiter = rateLimit({
 
 const resendActivationSpeedLimiter = slowDown({
   windowMs: 60 * 1000, // 15 minutes
-  delayAfter: 2, // allow 5 requests to go at full-speed, then...
+  delayAfter: 5, // allow 5 requests to go at full-speed, then...
   delayMs: 500, // 3th request has a 500ms delay, 7th has a 200ms delay, 8th gets 300ms, etc.
 });
 
+router.get(
+  "/validate-access-token",
+  requireAuth,
+  authController.validateAccessToken,
+);
 router.post("/register", resendActivationSpeedLimiter, authController.register);
 router.post(
   "/activation-code",
@@ -35,10 +40,11 @@ router.post(
   requireAuth,
   authController.resendActivationCode,
 );
-router.get(
-  "/validate-access-token",
+router.post(
+  "/activate-account",
+  speedLimiter,
   requireAuth,
-  authController.validateAccessToken,
+  authController.activateAccount,
 );
 
 export default router;

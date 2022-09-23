@@ -14,6 +14,7 @@ import {
   getHashedPassword /*getImageUrlByGender */,
 } from "./auth.helpers";
 import cookiesConfig from "../../configs/cookiesConfig";
+import { getUserRedirectPage } from "../user/user.redirects";
 
 export async function register(
   req: Request<{}, UserWithId, UserAccount>,
@@ -76,33 +77,70 @@ export async function register(
 }
 
 export const resendActivationCode = async (
-  req: Request<{}, {}, { email: string }>,
+  req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
     const user = req.user as UserWithId;
-    const { email } = user.account;
-    const userResult = await Users.findOne(
-      { "account.email": email },
-      { projection: { "account.email": 1, "account.isActivate": 1 } },
-    );
-    // Throw error if the user email is not found
-    if (userResult === null)
-      throw new Error("Correo electrónico no encontrado");
+    const { email, activationCode, isActivate, username } = user.account;
 
-    // Throw error if the user account is already activated or deleted
-    if (userResult.account.isActivate || userResult.account.isDeleted)
-      throw new Error("La cuenta ya ha sido activada");
+    // Throw error if the user account is already activated
+    if (isActivate) {
+      const redirect = getUserRedirectPage(user);
+      return res
+        .status(301)
+        .json({ message: "La cuenta ya ha sido activada", redirect });
+    }
 
     // Resend the email
-    await emailService.activationCode(
-      userResult.account.username,
-      userResult.account.email,
-      userResult.account.activationCode,
-    );
+    await emailService.activationCode(username, email, activationCode);
 
     res.status(200).json({ message: "El correo electrónico se ha enviado" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const activateAccount = async (
+  req: Request<{ code: string }, {}>,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const user = req.user as UserWithId;
+    const { activationCode } = user.account;
+    const { code } = req.query;
+
+    // Redirect to home page if the user account is already activated
+    if (user.account.isActivate) {
+      return res
+        .status(301)
+        .json({ message: "La cuenta ya está activada", redirect: "/" });
+    }
+
+    // Throw error if the code doesn't match with the user.acccount.activationCode
+    if (activationCode !== code) {
+      res.status(400);
+      throw new Error("Código de activación incorrecto");
+    }
+
+    const updatedUser = await Users.findOneAndUpdate(
+      { _id: user._id },
+      { $set: { "account.isActivate": true } },
+      { returnDocument: "after" },
+    );
+
+    if (!updatedUser.value) {
+      res.status(404);
+      throw new Error("Usuario no encontrado");
+    }
+
+    const redirect = getUserRedirectPage(updatedUser.value);
+
+    res
+      .status(301)
+      .json({ message: "Cuenta activada correctamente", redirect });
   } catch (error) {
     next(error);
   }
@@ -119,14 +157,13 @@ export const resendActivationCode = async (
 export const validateAccessToken = async (req: Request, res: Response) => {
   const user = req.user as UserWithId;
 
-  if (!user.account.isActivate) {
-    return res.status(200).json({
-      message: "User is not activated",
-      redirect: "/activate-account",
-    });
+  const redirect = getUserRedirectPage(user);
+
+  if (redirect !== null) {
+    return res.status(200).json({ redirect });
   }
 
   return res.status(200).json({
-    message: "User is authenticated",
+    log: "User is authenticated",
   });
 };

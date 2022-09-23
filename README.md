@@ -75,3 +75,29 @@ npm run dev
 - [ ] Update express-rate-limiter package from [https://www.npmjs.com/package/rate-limiter-flexible](rate-limiter-flexible) or rate-limit-mongo
 
 - [ ] Add some tests when authentication is complete (look the code garden auth example with tests)
+
+## API Standars
+
+#### Message property
+
+We only should response the prop message if we want to show a toast at frontend, ex:
+
+```
+.json({ message: "Show a toast" })
+```
+
+#### Redirect property
+
+Redirect property allow the frontend to redirect the user to the correct page
+
+```
+.json({ redirect: "/activate-account" })
+```
+
+#### Log property
+
+If we want to send just information use the prop "log"
+
+```
+.json({ log: "The service is not ready yet" })
+```
