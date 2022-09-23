@@ -29,7 +29,32 @@ export async function register(
       activationCode: uuidv4(),
       // imageUrl,
     };
+
+    res.status(400);
     const validateResult = User.parse({ account: userData });
+
+    // lookfor users with the same email or username
+    const user = await Users.findOne({
+      $or: [
+        { "account.email": validateResult.account.email },
+        { "account.username": validateResult.account.username },
+      ],
+    });
+
+    if (user !== null) {
+      if (user.account.username === validateResult.account.username) {
+        return res.status(400).json({
+          message: "El nombre de usuario ya existe",
+          field: "username",
+        });
+      }
+      if (user.account.email === validateResult.account.email) {
+        return res.status(400).json({
+          message: "El correo electrónico ya fue registrado",
+          field: "email",
+        });
+      }
+    }
 
     //  hash password
     validateResult.account.password = await getHashedPassword(
