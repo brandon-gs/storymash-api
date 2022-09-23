@@ -63,7 +63,3 @@ export type UserClientSession = ChangeFields<
   }
 >;
 export const Users = db.collection<User>("users");
-
-// Configure mongodb collection
-Users.createIndex({ "account.email": 1 }, { unique: true });
-Users.createIndex({ "account.username": 1 }, { unique: true });
