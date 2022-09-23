@@ -68,7 +68,7 @@ npm run dev
 
 - [ ] Create authentication endpoints
 
-  - [ ] Create activate-account endpoint
+  - [x] Create activate-account endpoint
   - [ ] Create login endpoint
   - [ ] Create logout endpoint
 
