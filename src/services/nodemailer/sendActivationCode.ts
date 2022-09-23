@@ -23,8 +23,7 @@ const sendActivationCode = async (
         </div>
         <div><a href=${link} alt="activation link">${link}</a></div>`,
   });
-
-  console.log("Message sent: %s", sentEmail.messageId);
+  return sentEmail;
 };
 
 export default sendActivationCode;
