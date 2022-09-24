@@ -35,6 +35,7 @@ export const UserProfile = z
     birthdate: z.string().default(""),
     gender: z.string().min(1).default(""),
     imageUrl: z.string().default(""),
+    about: z.string().default(""),
   })
   .nullable()
   .default(null);
