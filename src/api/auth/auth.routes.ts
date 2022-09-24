@@ -1,7 +1,7 @@
 import { Router } from "express";
 import rateLimit from "express-rate-limit";
 import slowDown from "express-slow-down";
-import { requireAuth, speedLimiter } from "../../middlewares";
+import { requireAuth, requireLogin, speedLimiter } from "../../middlewares";
 
 import * as authController from "./auth.controller";
 
@@ -33,6 +33,7 @@ router.get(
   authController.validateAccessToken,
 );
 router.post("/register", resendActivationSpeedLimiter, authController.register);
+router.post("/login", requireLogin, authController.login);
 router.post(
   "/activation-code",
   resendActivationSpeedLimiter,

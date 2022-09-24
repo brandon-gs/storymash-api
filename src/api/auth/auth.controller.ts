@@ -16,6 +16,24 @@ import {
 import cookiesConfig from "../../configs/cookiesConfig";
 import { getUserRedirectPage } from "../user/user.redirects";
 
+export function login(req: Request, res: Response) {
+  const user = req.user as UserWithId;
+
+  const accessToken = createAccessToken(user._id, user.account.email);
+  res.cookie(
+    cookiesConfig.access.name,
+    accessToken,
+    cookiesConfig.access.options,
+  );
+
+  const redirect = getUserRedirectPage(user);
+  if (redirect !== null) {
+    return res.status(301).json({ redirect });
+  }
+
+  return res.status(204);
+}
+
 export async function register(
   req: Request<{}, UserWithId, UserAccount>,
   res: Response,

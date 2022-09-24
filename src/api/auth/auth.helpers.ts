@@ -24,8 +24,8 @@ export async function getHashedPassword(password: string) {
   return hash;
 }
 
-export async function matchPassword(password: string, userPassword: string) {
-  const matches = await bcrypt.compare(password, userPassword);
+export async function matchPassword(hashPassword: string, password: string) {
+  const matches = await bcrypt.compare(password, hashPassword);
   return matches;
 }
 

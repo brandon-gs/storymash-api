@@ -20,13 +20,13 @@ const localLogin = new LocalStrategy(
     });
     if (user === null) {
       return done(null, false, {
-        message: "Correo electrónico o nombre de usuario incorrecto",
+        message: "Credenciales incorrectas",
       });
     }
     // match password validation
-    const matchPasswords = matchPassword(user.account.password, password);
+    const matchPasswords = await matchPassword(user.account.password, password);
     if (!matchPasswords) {
-      return done(null, false, { message: "Contraseña incorrecta" });
+      return done(null, false, { message: "Credenciales incorrectas" });
     }
     return done(null, user);
   },

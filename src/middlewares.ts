@@ -40,7 +40,19 @@ export const requireAuth = (
     return next(); // continue to next middleware if no error.
   })(req, res, next);
 };
-export const requireLogin = passport.authenticate("local", { session: false });
+export const requireLogin = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  passport.authenticate("local", { session: false }, (err, user) => {
+    if (err || !user) {
+      return res.status(422).json({ message: "Credenciales incorrectas" });
+    }
+    req.user = user;
+    return next();
+  })(req, res, next);
+};
 
 export const speedLimiter = slowDown({
   windowMs: 10 * 60 * 1000, // 10 minutes

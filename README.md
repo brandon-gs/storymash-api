@@ -69,7 +69,7 @@ npm run dev
 - [ ] Create authentication endpoints
 
   - [x] Create activate-account endpoint
-  - [ ] Create login endpoint
+  - [x] Create login endpoint
   - [ ] Create logout endpoint
 
 - [ ] Update express-rate-limiter package from [https://www.npmjs.com/package/rate-limiter-flexible](rate-limiter-flexible) or rate-limit-mongo
@@ -100,4 +100,12 @@ If we want to send just information use the prop "log"
 
 ```
 .json({ log: "The service is not ready yet" })
+```
+
+### formErrors property
+
+This allow show an error in the form input at frontend
+
+```
+.json({ formErrors: [{ email: "email must be provided" }] })
 ```
