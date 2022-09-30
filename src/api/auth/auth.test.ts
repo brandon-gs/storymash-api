@@ -9,7 +9,7 @@ beforeAll(async () => {
   } catch (error) {}
 });
 
-describe("auth", () => {
+describe("POST /api/v1/auth/register", () => {
   it("register a new user", (done) => {
     request(app)
       .post("/api/v1/auth/register")
