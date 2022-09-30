@@ -1,4 +1,5 @@
-import { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
+import { AnyZodObject, ZodError } from "zod";
 import passport from "passport";
 import slowDown from "express-slow-down";
 
@@ -59,6 +60,30 @@ export const speedLimiter = slowDown({
   delayAfter: 100, // allow 100 requests per 15 minutes, then...
   delayMs: 500, // begin adding 500ms of delay per request above 100:
 });
+
+export const zValidation =
+  (schema: AnyZodObject) =>
+  (req: Request, res: Response, next: NextFunction) => {
+    try {
+      schema.parse({
+        body: req.body,
+        params: req.params,
+        query: req.query,
+      });
+      next();
+    } catch (error) {
+      if (error instanceof ZodError) {
+        return res.status(400).json({
+          validationErrors: error.issues.map((issue) => ({
+            path: issue.path,
+            fieldname: issue.path[2],
+            message: issue.message,
+          })),
+        });
+      }
+      return res.status(400).json({ message: "internal server error" });
+    }
+  };
 
 // Maybe it can be added as global middleware for protect our api to be exposed for the public
 // export const requireApiSecret = (
