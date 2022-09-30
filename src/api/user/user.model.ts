@@ -26,23 +26,21 @@ export const UserAccount = z.object({
   activationCode: z.string(),
   isActivate: z.boolean().default(false),
   isDeleted: z.boolean().default(false),
+  omitProfileOnboarding: z.boolean().default(false),
 });
 
-export const UserProfile = z
-  .object({
-    firstname: z.string().min(3).default(""),
-    lastname: z.string().min(3).default(""),
-    birthdate: z.string().default(""),
-    gender: z.string().min(1).default(""),
-    imageUrl: z.string().default(""),
-    about: z.string().default(""),
-  })
-  .nullable()
-  .default(null);
+export const UserProfile = z.object({
+  firstname: z.string().min(3).default(""),
+  lastname: z.string().min(3).default(""),
+  birthdate: z.string(),
+  gender: z.string().default(""),
+  imageUrl: z.string().default(""),
+  about: z.string().default(""),
+});
 
 export const User = z.object({
   account: UserAccount,
-  profile: UserProfile,
+  profile: UserProfile.nullable().default(null),
 });
 
 export type User = z.infer<typeof User>;

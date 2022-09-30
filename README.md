@@ -72,6 +72,11 @@ npm run dev
   - [x] Create login endpoint
   - [ ] Create logout endpoint
 
+- [ ] onboarding process
+
+  - [ ] endpoint to allow to the users select their gender
+  - [ ] endpoint to allow save the user information like name, lastname, birthdate
+
 - [ ] Update express-rate-limiter package from [https://www.npmjs.com/package/rate-limiter-flexible](rate-limiter-flexible) or rate-limit-mongo
 
 - [ ] Add some tests when authentication is complete (look the code garden auth example with tests)
