@@ -7,6 +7,12 @@ import { UserProfile, Users, type UserWithId } from "./user.model";
 import { getImageUrlByGender, getUserPublicData } from "./user.helpers";
 import { getUserRedirectPage } from "./user.redirects";
 
+export const getUser = async (req: Request, res: Response) => {
+  const user = req.user as UserWithId;
+  const publicUser = getUserPublicData(user);
+  return res.status(200).json({ ...publicUser });
+};
+
 export const getUserAccount = async (req: Request, res: Response) => {
   const user = req.user as UserWithId;
   const { account } = getUserPublicData(user);
