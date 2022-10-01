@@ -26,7 +26,7 @@ export const UserAccount = z.object({
   activationCode: z.string(),
   isActivate: z.boolean().default(false),
   isDeleted: z.boolean().default(false),
-  omitProfileOnboarding: z.boolean().default(false),
+  onboardingComplete: z.boolean().default(false),
 });
 
 export const UserProfile = z.object({

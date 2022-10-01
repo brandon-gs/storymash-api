@@ -14,18 +14,19 @@ export function getUserRedirectPage(user: UserWithId) {
     return "/activate-account";
   }
 
-  if (user.profile === null) {
-    return "/onboarding/info";
-  }
+  /**
+   * Redirect to the onboarding routes only if the user never finish it before
+   */
+  const isOnboardingComplete = user.account.onboardingComplete;
+  if (!isOnboardingComplete) {
+    if (user.profile === null) return "/onboarding/info";
 
-  if (!user.profile.gender || user.profile.gender === "") {
-    return "/onboarding/gender";
-  }
+    if (!user.profile.gender || user.profile.gender === "") {
+      return "/onboarding/gender";
+    }
 
-  if (!user.account.omitProfileOnboarding) {
     return "/onboarding/profile";
   }
-
   // The user has all the necessary information so they can visit any page
   return null;
 }
