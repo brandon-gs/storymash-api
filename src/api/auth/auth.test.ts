@@ -3,6 +3,12 @@ import request from "supertest";
 import app from "../../app";
 import { Users } from "../user/user.model";
 
+const newAuthUser = {
+  username: "test",
+  email: "test@test.com",
+  password: "testPassword",
+};
+
 beforeAll(async () => {
   try {
     await Users.drop();
@@ -14,11 +20,7 @@ describe("POST /api/v1/auth/register", () => {
     request(app)
       .post("/api/v1/auth/register")
       .set("Accept", "application/json")
-      .send({
-        username: "test",
-        email: "test@test.com",
-        password: "testPassword",
-      })
+      .send(newAuthUser)
       .expect("Content-Type", /json/)
       .expect(201, done);
   });
@@ -26,11 +28,7 @@ describe("POST /api/v1/auth/register", () => {
     request(app)
       .post("/api/v1/auth/register")
       .set("Accept", "application/json")
-      .send({
-        username: "test",
-        email: "test@test.com",
-        password: "testPassword",
-      })
+      .send(newAuthUser)
       .expect("Content-Type", /json/)
       .expect(
         400,
@@ -46,9 +44,8 @@ describe("POST /api/v1/auth/register", () => {
       .post("/api/v1/auth/register")
       .set("Accept", "application/json")
       .send({
+        ...newAuthUser,
         username: "test2",
-        email: "test@test.com",
-        password: "testPassword",
       })
       .expect("Content-Type", /json/)
       .expect(
@@ -71,5 +68,38 @@ describe("POST /api/v1/auth/register", () => {
       })
       .expect("Content-Type", /json/)
       .expect(400, done);
+  });
+});
+
+describe("POST /auth/login", () => {
+  it("should only allow valid users to login", async () => {
+    const response = await request(app)
+      .post("/api/v1/auth/login")
+      .send(newAuthUser)
+      .expect(301);
+    const cookies = response.headers["set-cookie"][0]
+      .split(",")
+      .map((item: string) => item.split(";")[0]);
+    expect(cookies[0]).toContain("access_token=");
+  });
+  it("should only allow valid users to login", (done) => {
+    request(app)
+      .post("/api/v1/auth/login")
+      .send({ username: "incorrectuser", password: "incorrectpassword" })
+      .expect(422, done);
+  });
+  it("should require a username", async () => {
+    const response = await request(app)
+      .post("/api/v1/auth/login")
+      .send({})
+      .expect(422);
+    expect(response.body.message).toBe("Credenciales incorrectas");
+  });
+  it("should require a password", async () => {
+    const response = await request(app)
+      .post("/api/v1/auth/login")
+      .send({ username: "testuser" })
+      .expect(422);
+    expect(response.body.message).toBe("Credenciales incorrectas");
   });
 });
