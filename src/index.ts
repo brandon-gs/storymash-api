@@ -1,6 +1,5 @@
 import "dotenv/config"; // This must be at the top to allow use env variables in all files
 
-import "./services/passport/jwt";
 import app from "./app";
 
 const port = process.env.PORT || "5000";
