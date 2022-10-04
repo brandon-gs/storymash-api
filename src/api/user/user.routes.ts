@@ -28,6 +28,6 @@ router.put(
   zValidation(SaveUserGenderSchema),
   userController.saveUserGender,
 );
-router.put("/onboarding/profile", requireAuth, userController.saveUserGender);
+router.put("/onboarding/profile", requireAuth, userController.saveUserProfile);
 
 export default router;

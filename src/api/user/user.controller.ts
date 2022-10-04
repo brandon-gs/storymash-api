@@ -6,6 +6,7 @@ import type {
 import { UserProfile, Users, type UserWithId } from "./user.model";
 import { getImageUrlByGender, getUserPublicData } from "./user.helpers";
 import { getUserRedirectPage } from "./user.redirects";
+import imageUpload from "../../services/cloudinary/imageUpload";
 
 export const getUser = async (req: Request, res: Response) => {
   const user = req.user as UserWithId;
@@ -95,6 +96,50 @@ export const saveUserGender = async (
     return res
       .status(200)
       .json({ message: "Información actualizada", redirect });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const saveUserProfile = async (
+  req: Request<{}, {}, { about: string }>,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    // handle image upload if the file exists
+    const image = await imageUpload(req);
+    if (image.error) {
+      res.status(400);
+      throw new Error(image.message);
+    }
+
+    const user = req.user as UserWithId;
+
+    // this allow us to keep the previous user's about if the user only sends the image
+    const about = req.body.about ?? user.profile?.about ?? "";
+    const imageUrl = image.imageUrl ?? user.profile?.imageUrl ?? "";
+
+    const userUpdated = await Users.findOneAndUpdate(
+      { _id: user._id },
+      {
+        $set: {
+          "account.onboardingComplete": true,
+          "profile.about": about,
+          "profile.imageUrl": imageUrl,
+        },
+      },
+    );
+
+    if (!userUpdated.value) {
+      res.status(400);
+      throw new Error("No se encontro el usuario");
+    }
+
+    res.status(200).json({
+      message: "Información actualizada",
+      redirect: getUserRedirectPage(userUpdated.value),
+    });
   } catch (error) {
     next(error);
   }

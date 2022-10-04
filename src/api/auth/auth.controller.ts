@@ -203,10 +203,10 @@ export const validateAccessToken = async (req: Request, res: Response) => {
   const redirect = getUserRedirectPage(user);
 
   if (redirect !== null) {
-    return res.status(200).json({ redirect });
+    return res.status(200).json({ user, redirect });
   }
 
   return res.status(200).json({
-    log: "User is authenticated",
+    user,
   });
 };

@@ -25,6 +25,10 @@ declare global {
       // COOKIES
       COOKIE_ACCESS_NAME: string;
       COOKIE_REFRESH_NAME: string;
+      // CLOUDINARY
+      CLOUDINARY_NAME: string;
+      CLOUDINARY_API_KEY: string;
+      CLOUDINARY_API_SECRET: string;
     }
   }
 }
