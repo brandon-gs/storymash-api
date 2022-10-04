@@ -76,7 +76,7 @@ npm run dev
 
   - [x] endpoint to allow save the user information like name, lastname, birthdate
   - [x] endpoint to allow to the users select their gender
-  - [ ] endpoint to allow save the user's about and an image (both are optional)
+  - [W] endpoint to allow save the user's about and an image (both are optional)
 
 - [ ] Update express-rate-limiter package from [https://www.npmjs.com/package/rate-limiter-flexible](rate-limiter-flexible) or rate-limit-mongo
 
