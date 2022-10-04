@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { requireAuth, speedLimiter, zValidation } from "../../middlewares";
+import { requireAuth, zValidation } from "../../middlewares";
 
 import * as userController from "./user.controller";
 import {
@@ -12,28 +12,22 @@ import {
  */
 const router = Router();
 
-router.get("/", speedLimiter, requireAuth, userController.getUser);
-router.get(
-  "/account",
-  speedLimiter,
-  requireAuth,
-  userController.getUserAccount,
-);
+router.get("/", requireAuth, userController.getUser);
+router.get("/account", requireAuth, userController.getUserAccount);
 
 // endpoints for the onboarding process
 router.put(
   "/onboarding/info",
-  speedLimiter,
   requireAuth,
   zValidation(SaveUserInformationSchema),
   userController.saveUserInformation,
 );
 router.put(
   "/onboarding/gender",
-  speedLimiter,
   requireAuth,
   zValidation(SaveUserGenderSchema),
   userController.saveUserGender,
 );
+router.put("/onboarding/profile", requireAuth, userController.saveUserGender);
 
 export default router;

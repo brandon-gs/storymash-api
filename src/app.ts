@@ -26,6 +26,7 @@ app.get<{}, MessageResponse>("/", (req, res) => {
   });
 });
 
+app.use(middlewares.speedLimiter);
 app.use("/api/v1", api);
 
 // These middlewares should be at the end
