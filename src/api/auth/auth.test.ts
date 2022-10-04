@@ -1,19 +1,12 @@
 import request from "supertest";
 
 import app from "../../app";
-import { Users } from "../user/user.model";
 
 const newAuthUser = {
   username: "test",
   email: "test@test.com",
   password: "testPassword",
 };
-
-beforeAll(async () => {
-  try {
-    await Users.drop();
-  } catch (error) {}
-});
 
 describe("POST /api/v1/auth/register", () => {
   it("register a new user", (done) => {
