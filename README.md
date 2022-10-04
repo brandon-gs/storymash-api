@@ -74,12 +74,15 @@ npm run dev
 
 - [ ] onboarding process
 
-  - [ ] endpoint to allow to the users select their gender
-  - [ ] endpoint to allow save the user information like name, lastname, birthdate
+  - [x] endpoint to allow save the user information like name, lastname, birthdate
+  - [x] endpoint to allow to the users select their gender
+  - [ ] endpoint to allow save the user's about and an image (both are optional)
 
 - [ ] Update express-rate-limiter package from [https://www.npmjs.com/package/rate-limiter-flexible](rate-limiter-flexible) or rate-limit-mongo
 
 - [ ] Add some tests when authentication is complete (look the code garden auth example with tests)
+
+- [ ] try this implementation to avoid repeat register/login logic on every test file [share-beforeAll-between-test-files](https://stackoverflow.com/questions/47997652/jest-beforeall-share-between-multiple-test-files)
 
 ## API Standars
 
