@@ -81,9 +81,10 @@ npm run dev
 - [ ] Stories
 
   - [x] Create Story model
+  - [x] Use cloudinary sdk to get a random image from a folder and return the imageUrl
   - [ ] Create story
     - [ ] Allow enter title
-    - [ ] Allow enter imageUrl
+    - [ ] Allow enter file and create an imageUrl or asign a defaultImageUrl
     - [ ] Allow enter categories
     - [ ] Allow enter the first chapter
   - [ ] Get all stories
@@ -121,6 +122,7 @@ npm run dev
 # Pre MVP But not required
 
 - [ ] Write tests for all the story endpoints
+- [ ] Show on the client all the possible images to use in their stories and allow select one
 
 # After MVP
 
