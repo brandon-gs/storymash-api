@@ -41,6 +41,7 @@ export const UserProfile = z.object({
 export const User = z.object({
   account: UserAccount,
   profile: UserProfile.nullable().default(null),
+  createdAt: z.string().default(new Date().toUTCString()),
 });
 
 export type User = z.infer<typeof User>;
