@@ -13,11 +13,11 @@
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix",
-    "*.{js, ts, md}": "prettier --write",
     "*.ts": [
       "bash -c 'tsc --noEmit'",
       "jest --bail --findRelatedTests"
-    ]
+    ],
+    "*.{js, ts, md}": "prettier --write"
   },
   "keywords": [],
   "author": "Brandon GS",
