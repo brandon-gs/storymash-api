@@ -118,6 +118,10 @@ npm run dev
 
 - [ ] Test what happend when a user is logged an the account is deleted
 
+# Pre MVP But not required
+
+- [ ] Write tests for all the story endpoints
+
 # After MVP
 
 - [ ] Make point system for every interaction
