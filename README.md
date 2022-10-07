@@ -87,6 +87,8 @@ npm run dev
     - [ ] Allow enter file and create an imageUrl or asign a defaultImageUrl
     - [ ] Allow enter categories
     - [ ] Allow enter the first chapter
+  - [ ] Update image from story (required story_id)
+    - [ ] Allow upload an image and assign the url to imageUrl story
   - [ ] Get all stories
     - [ ] Get only the stories where isDeleted is false
     - [ ] Sort stories by the most recently chapter using the createdAt attribute from the last chapter
