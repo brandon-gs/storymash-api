@@ -12,8 +12,8 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint --cache --fix",
     "*.ts": [
+      "eslint --cache --fix",
       "bash -c 'tsc --noEmit'",
       "jest --bail --findRelatedTests"
     ],
