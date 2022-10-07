@@ -90,7 +90,9 @@ export const zValidation =
           })),
         });
       }
-      return res.status(400).json({ message: "internal server error" });
+      return res
+        .status(500)
+        .json({ message: "Error en el servidor, intentelo más tarde" });
     }
   };
 
