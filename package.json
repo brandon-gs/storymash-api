@@ -14,7 +14,10 @@
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix",
     "*.{js, ts, md}": "prettier --write",
-    "*.{ts}": ["bash -c 'tsc --noEmit'", "jest --bail --findRelatedTests"]
+    "*.ts": [
+      "bash -c 'tsc --noEmit'",
+      "jest --bail --findRelatedTests"
+    ]
   },
   "keywords": [],
   "author": "Brandon GS",
