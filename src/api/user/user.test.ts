@@ -20,6 +20,7 @@ beforeAll(async () => {
   try {
     await agent.post("/api/v1/auth/register").send(newUser);
     await agent.post("/api/v1/auth/login").send(newUser);
+    await new Promise((resolve) => setTimeout(() => resolve(null), 2000));
   } catch (error) {}
 }, 10000);
 
