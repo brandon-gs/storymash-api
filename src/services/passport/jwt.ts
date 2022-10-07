@@ -52,8 +52,8 @@ const jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
     const user = await Users.findOne(
       {
         _id: new ObjectId(payload._id),
+        "account.isDeleted": false,
       },
-      // { projection: { "account.isDeleted": 1, "account.isActivate": 1 } },
       {
         projection: { "account.password": 0 },
       },
