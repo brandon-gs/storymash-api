@@ -82,11 +82,15 @@ npm run dev
 
   - [x] Create Story model
   - [x] Use cloudinary sdk to get a random image from a folder and return the imageUrl
-  - [ ] Create story
-    - [ ] Allow enter title
-    - [ ] Allow enter file and create an imageUrl or asign a defaultImageUrl
-    - [ ] Allow enter categories
-    - [ ] Allow enter the first chapter
+  - [x] Create story
+    - [x] Allow enter title
+    - [x] assign a defaultImageUrl
+    - [x] Allow enter categories
+    - [x] Allow enter the first chapter
+  - [ ] Update image and publish the story
+    - [ ] Update image or keep the imageUrl
+    - [ ] Update isPublished to true
+    - [ ] Update createdAt field to new Date()
   - [ ] Update image from story (required story_id)
     - [ ] Allow upload an image and assign the url to imageUrl story
   - [ ] Get all stories
