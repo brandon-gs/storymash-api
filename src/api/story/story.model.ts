@@ -7,6 +7,8 @@ export const StoryComment = z.object({
   authorId: z.string().min(1, "El autor del comentario es requerido"),
   content: z.string().min(1, "El comentario es requerido"),
   likes: z.array(z.string()).default([]), // array with user's id
+  createdAt: z.string().default(new Date().toUTCString()),
+  isEdited: z.boolean().default(false),
 });
 
 export const StoryChapter = z.object({
