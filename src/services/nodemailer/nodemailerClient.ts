@@ -5,7 +5,7 @@ import nodemailer from "nodemailer";
  * {@link https://community.nodemailer.com/2-0-0-beta/setup-smtp/well-known-services/ | service}
  */
 
-const nodemailerClient = nodemailer.createTransport({
+const nodemailerClientProd = nodemailer.createTransport({
   service: process.env.EMAIL_SERVICE,
   auth: {
     type: "OAuth2",
@@ -17,5 +17,13 @@ const nodemailerClient = nodemailer.createTransport({
     // accessToken: "ya29.Xx_XX0xxxxx-xX0X0XxXXxXxXXXxX0x",
   },
 });
+
+const nodemailerClienTest = nodemailer.createTransport({
+  host: "localhost",
+  port: 1025,
+});
+
+const nodemailerClient =
+  process.env.NODE_ENV === "test" ? nodemailerClienTest : nodemailerClientProd;
 
 export default nodemailerClient;
