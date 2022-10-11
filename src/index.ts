@@ -1,3 +1,4 @@
+import "./types.ts";
 import dotenv from "dotenv"; // This must be at the top to allow use env variables in all files
 dotenv.config({ path: process.env.NODE_ENV === "test" ? ".env.test" : ".env" });
 

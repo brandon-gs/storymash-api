@@ -16,7 +16,7 @@
     "*.ts": [
       "eslint --cache --fix",
       "bash -c 'tsc --noEmit'",
-      "jest --bail --findRelatedTests"
+      "jest --bail --findRelatedTests --passWithNoTests"
     ],
     "*.{js, ts, md}": "prettier --write"
   },
