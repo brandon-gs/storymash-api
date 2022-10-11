@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "account": {
+        "username": "devon",
+        "email": "devon@test.com",
+        "password": "password",
+        "activationCode": "1234",
+        "isActivate": true,
+        "isDeleted": false,
+        "onboardingComplete": true
+      },
+      "profile": {
+        "firstname": "devon",
+        "lastname": "joe",
+        "birthdate": "2020-02-11T21:26:46.510Z",
+        "gender": "male",
+        "imageUrl": "",
+        "about": "lorem ipsum"
+      },
+      "createdAt": "2020-02-11T21:26:46.510Z"
+    },
+    {
+      "account": {
+        "username": "joe",
+        "email": "joe@test.com",
+        "password": "password",
+        "activationCode": "1234",
+        "isActivate": false,
+        "isDeleted": false,
+        "onboardingComplete": false
+      },
+      "createdAt": "2020-02-11T21:26:46.510Z"
+    },
+    {
+      "account": {
+        "username": "johns",
+        "email": "johns@test.com",
+        "password": "password",
+        "activationCode": "1234",
+        "isActivate": true,
+        "isDeleted": false,
+        "onboardingComplete": false
+      },
+      "createdAt": "2020-02-11T21:26:46.510Z"
+    }
+  ]
+}

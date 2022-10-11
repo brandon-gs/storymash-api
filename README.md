@@ -64,7 +64,14 @@ npm run dev
 
 - [x] Uplaod repo to github
 
-  - [ ] Configure husky and lint-stagged
+  - [x] Configure husky and lint-stagged
+
+- [x] Configure testData module /test
+
+  - [x] This module only should be avaiable when NODE_ENV is test or development
+  - [x] Create POST /seed route
+    - [x] Create function to seedDb
+    - [x] Call seedDb inside the endpoint
 
 - [ ] Create authentication endpoints
 

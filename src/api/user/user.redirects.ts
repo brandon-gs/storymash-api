@@ -19,7 +19,7 @@ export function getUserRedirectPage(user: UserWithId) {
    */
   const isOnboardingComplete = user.account.onboardingComplete;
   if (!isOnboardingComplete) {
-    if (user.profile === null) return "/onboarding/info";
+    if (!user.profile) return "/onboarding/info";
 
     if (!user.profile.gender || user.profile.gender === "") {
       return "/onboarding/gender";

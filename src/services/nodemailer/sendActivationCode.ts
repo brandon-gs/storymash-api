@@ -10,6 +10,7 @@ const sendActivationCode = async (
   email: string,
   code: string,
 ) => {
+  if (process.env.NODE_ENV === "test") return;
   const link = `${domain}/activation?code=${code}`;
   await nodemailerClient.sendMail({
     from: `"Storymash" <${process.env.EMAIL_USER}>`,

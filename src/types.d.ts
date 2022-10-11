@@ -9,6 +9,7 @@ declare global {
       EMAIL_USER: string;
       EMAIL_PASSWORD: string;
       EMAIL_HOST: string;
+      EMAIL_RESEND_ACTIVATION_EMAIL_LIMIT: number;
       // OAUTH
       OAUTH_CLIENT_ID: string;
       OAUTH_CLIENT_SECRET: string;
