@@ -69,7 +69,7 @@ describe("POST /auth/login", () => {
     const response = await request(app)
       .post("/api/v1/auth/login")
       .send(newAuthUser)
-      .expect(301);
+      .expect(307);
     const cookies = response.headers["set-cookie"][0]
       .split(",")
       .map((item: string) => item.split(";")[0]);

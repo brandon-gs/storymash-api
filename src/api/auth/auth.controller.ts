@@ -28,10 +28,10 @@ export function login(req: Request, res: Response) {
 
   const redirect = getUserRedirectPage(user);
   if (redirect !== null) {
-    return res.status(301).json({ redirect });
+    return res.status(307).json({ redirect });
   }
 
-  return res.status(204);
+  res.status(200).json({ redirect: "/stories" });
 }
 
 export async function register(
@@ -132,7 +132,7 @@ export const resendActivationCode = async (
     if (isActivate) {
       const redirect = getUserRedirectPage(user);
       return res
-        .status(301)
+        .status(307)
         .json({ message: "La cuenta ya ha sido activada", redirect });
     }
 
@@ -157,9 +157,10 @@ export const activateAccount = async (
 
     // Redirect to home page if the user account is already activated
     if (user.account.isActivate) {
+      const redirect = getUserRedirectPage(user);
       return res
-        .status(301)
-        .json({ message: "La cuenta ya está activada", redirect: "/" });
+        .status(307)
+        .json({ message: "La cuenta ya está activada", redirect });
     }
 
     // Throw error if the code doesn't match with the user.acccount.activationCode
@@ -182,7 +183,7 @@ export const activateAccount = async (
     const redirect = getUserRedirectPage(updatedUser.value);
 
     res
-      .status(301)
+      .status(307)
       .json({ message: "Cuenta activada correctamente", redirect });
   } catch (error) {
     next(error);

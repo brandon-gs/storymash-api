@@ -17,10 +17,10 @@ app.set("trust proxy", 1);
 app.enable("trust proxy");
 
 app.use(morgan("dev"));
+app.use(cookieParser());
 app.use(helmet());
 app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(express.json());
-app.use(cookieParser());
 app.use(multer({ dest: path.join(__dirname, "uploads/") }).single("image"));
 
 app.get<{}, MessageResponse>("/", (req, res) => {

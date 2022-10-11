@@ -19,6 +19,15 @@ export function errorHandler(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction,
 ) {
+  if (err instanceof ZodError) {
+    return res.status(400).json({
+      validationErrors: err.issues.map((issue) => ({
+        path: issue.path,
+        fieldname: issue.path[2],
+        message: issue.message,
+      })),
+    });
+  }
   const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
   res.status(statusCode);
   res.json({
@@ -81,7 +90,9 @@ export const zValidation =
           })),
         });
       }
-      return res.status(400).json({ message: "internal server error" });
+      return res
+        .status(500)
+        .json({ message: "Error en el servidor, intentelo más tarde" });
     }
   };
 

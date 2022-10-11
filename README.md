@@ -64,7 +64,14 @@ npm run dev
 
 - [x] Uplaod repo to github
 
-  - [ ] Configure husky and lint-stagged
+  - [x] Configure husky and lint-stagged
+
+- [x] Configure testData module /test
+
+  - [x] This module only should be avaiable when NODE_ENV is test or development
+  - [x] Create POST /seed route
+    - [x] Create function to seedDb
+    - [x] Call seedDb inside the endpoint
 
 - [ ] Create authentication endpoints
 
@@ -81,11 +88,18 @@ npm run dev
 - [ ] Stories
 
   - [x] Create Story model
-  - [ ] Create story
-    - [ ] Allow enter title
-    - [ ] Allow enter imageUrl
-    - [ ] Allow enter categories
-    - [ ] Allow enter the first chapter
+  - [x] Use cloudinary sdk to get a random image from a folder and return the imageUrl
+  - [x] Create story
+    - [x] Allow enter title
+    - [x] assign a defaultImageUrl
+    - [x] Allow enter categories
+    - [x] Allow enter the first chapter
+  - [ ] Update image and publish the story
+    - [ ] Update image or keep the imageUrl
+    - [ ] Update isPublished to true
+    - [ ] Update createdAt field to new Date()
+  - [ ] Update image from story (required story_id)
+    - [ ] Allow upload an image and assign the url to imageUrl story
   - [ ] Get all stories
     - [ ] Get only the stories where isDeleted is false
     - [ ] Sort stories by the most recently chapter using the createdAt attribute from the last chapter
@@ -117,6 +131,11 @@ npm run dev
     - [ ] Allow delete the content for this chapter
 
 - [ ] Test what happend when a user is logged an the account is deleted
+
+# Pre MVP But not required
+
+- [ ] Write tests for all the story endpoints
+- [ ] Show on the client all the possible images to use in their stories and allow select one
 
 # After MVP
 

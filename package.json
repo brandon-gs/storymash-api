@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "start:test": "NODE_ENV=test ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "lint": "eslint --fix src test",
@@ -12,12 +13,12 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint --cache --fix",
-    "*.{js, ts, md}": "prettier --write",
     "*.ts": [
+      "eslint --cache --fix",
       "bash -c 'tsc --noEmit'",
-      "jest --bail --findRelatedTests"
-    ]
+      "jest --bail --findRelatedTests --passWithNoTests"
+    ],
+    "*.{js, ts, md}": "prettier --write"
   },
   "keywords": [],
   "author": "Brandon GS",
