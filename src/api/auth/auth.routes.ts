@@ -35,6 +35,7 @@ router.get(
 );
 router.post("/register", resendActivationSpeedLimiter, authController.register);
 router.post("/login", requireLogin, authController.login);
+router.post("/logout", authController.logout);
 router.post(
   "/activation-code",
   resendActivationSpeedLimiter,

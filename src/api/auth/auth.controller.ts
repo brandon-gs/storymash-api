@@ -34,6 +34,11 @@ export function login(req: Request, res: Response) {
   res.status(200).json({ redirect: "/stories" });
 }
 
+export function logout(req: Request, res: Response) {
+  res.clearCookie(cookiesConfig.access.name, cookiesConfig.access.delete);
+  res.status(200).json({});
+}
+
 export async function register(
   req: Request<{}, UserWithId, UserAccount>,
   res: Response,
