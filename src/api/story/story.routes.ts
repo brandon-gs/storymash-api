@@ -8,11 +8,13 @@ const router = Router();
 
 router.get("/random-image", storyController.getRandomImageForStory);
 
-router.post(
-  "/",
-  requireAuth,
-  zValidation(CreateStoryRequest),
-  storyController.createStory,
-);
+router
+  .route("/")
+  .get(storyController.getAllStories)
+  .post(
+    requireAuth,
+    zValidation(CreateStoryRequest),
+    storyController.createStory,
+  );
 
 export default router;

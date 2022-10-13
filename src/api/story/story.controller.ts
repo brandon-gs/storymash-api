@@ -1,9 +1,11 @@
-import { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
+import type { CreateStoryRequestBody } from "./story.schema";
+import type { UserWithId } from "../user/user.model";
 import { ObjectId } from "mongodb";
 import { Stories, Story, StoryChapter } from "./story.model";
-import type { UserWithId } from "../user/user.model";
-import type { CreateStoryRequestBody } from "./story.schema";
 import { getRandomImage } from "../../services/cloudinary";
+import paginateCollection from "../../utils/paginateCollection";
+import { storyCardAggregations } from "./story.aggregations";
 
 export const getRandomImageForStory = async (
   req: Request,
@@ -55,5 +57,24 @@ export const createStory = async (
       .json({ message: "Historia creada", storyId: story.insertedId });
   } catch (error) {
     next(error);
+  }
+};
+
+export const getAllStories = async (
+  req: Request<{}, {}, {}, { page: string; limit: string }>,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { page, limit } = req.query;
+    const pagination = await paginateCollection<Story>({
+      collection: "stories",
+      currentPage: parseInt(page),
+      limit: parseInt(limit),
+      aggregations: storyCardAggregations,
+    });
+    res.status(200).json({ ...pagination });
+  } catch (e) {
+    next(e);
   }
 };
