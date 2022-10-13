@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import { MongoServerError } from "mongodb";
+import { MongoServerError, ObjectId } from "mongodb";
 import { v4 as uuidv4 } from "uuid";
 
 import emailService from "../../services/nodemailer";
@@ -11,6 +11,7 @@ import {
 } from "../user/user.model";
 import {
   createAccessToken,
+  decodeUserFromToken,
   getHashedPassword /*getImageUrlByGender */,
 } from "./auth.helpers";
 import cookiesConfig from "../../configs/cookiesConfig";
@@ -204,15 +205,38 @@ export const activateAccount = async (
  * !THIS ENDPOINT ALWAYS MUST RESPONSE A JSON
  */
 export const validateAccessToken = async (req: Request, res: Response) => {
-  const user = req.user as UserWithId;
+  try {
+    const token = req.headers.authorization;
+    if (!token) {
+      return res.status(401).json({ message: "Inicia sesión" }); // send the error response to client
+    }
+    const userDecoded = decodeUserFromToken(token) as {
+      _id: string;
+      email: string;
+      iat: number;
+    };
+    const user = (await Users.findOne(
+      { _id: new ObjectId(userDecoded._id) },
+      {
+        projection: {
+          "account.isDeleted": 1,
+          "account.isActivate": 1,
+          "account.onboardingComplete": 1,
+          "profile.gender": 1,
+        },
+      },
+    )) as UserWithId;
 
-  const redirect = getUserRedirectPage(user);
+    const redirect = getUserRedirectPage(user);
 
-  if (redirect !== null) {
-    return res.status(200).json({ user, redirect });
+    if (redirect !== null) {
+      return res.status(200).json({ user, redirect });
+    }
+
+    return res.status(200).json({
+      user,
+    });
+  } catch (e) {
+    return res.status(401).json({ message: "Inicia sesión" });
   }
-
-  return res.status(200).json({
-    user,
-  });
 };

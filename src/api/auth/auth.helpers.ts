@@ -25,3 +25,7 @@ export function createRefreshToken(id: ObjectId) {
     expiresIn: jwtConfig.REFRESH_EXP!,
   });
 }
+
+export function decodeUserFromToken(token: string) {
+  return jwt.verify(token, jwtConfig.ACCESS_SECRET!);
+}

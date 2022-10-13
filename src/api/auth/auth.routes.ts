@@ -28,11 +28,7 @@ const resendActivationSpeedLimiter = slowDown({
   delayMs: 500, // 3th request has a 500ms delay, 7th has a 200ms delay, 8th gets 300ms, etc.
 });
 
-router.get(
-  "/validate-access-token",
-  requireAuth,
-  authController.validateAccessToken,
-);
+router.get("/validate-access-token", authController.validateAccessToken);
 router.post("/register", resendActivationSpeedLimiter, authController.register);
 router.post("/login", requireLogin, authController.login);
 router.post("/logout", authController.logout);
