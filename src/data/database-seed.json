@@ -1,6 +1,7 @@
 {
   "users": [
     {
+      "_id": "23463f2aba07c3dfd1030973",
       "account": {
         "username": "devon",
         "email": "devon@test.com",
@@ -15,7 +16,28 @@
         "lastname": "joe",
         "birthdate": "2020-02-11T21:26:46.510Z",
         "gender": "male",
-        "imageUrl": "",
+        "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1653351495/PngItem_1370018_zt8p1l.png",
+        "about": "lorem ipsum"
+      },
+      "createdAt": "2020-02-11T21:26:46.510Z"
+    },
+    {
+      "_id": "21063f4aba08c3dab1030973",
+      "account": {
+        "username": "mariana",
+        "email": "mariana@test.com",
+        "password": "password",
+        "activationCode": "1234",
+        "isActivate": true,
+        "isDeleted": false,
+        "onboardingComplete": true
+      },
+      "profile": {
+        "firstname": "mariana",
+        "lastname": "perez",
+        "birthdate": "2020-02-11T21:26:46.510Z",
+        "gender": "female",
+        "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1632105538/cddrccia6l5x6vtbtg61.png",
         "about": "lorem ipsum"
       },
       "createdAt": "2020-02-11T21:26:46.510Z"
@@ -43,6 +65,184 @@
         "onboardingComplete": false
       },
       "createdAt": "2020-02-11T21:26:46.510Z"
+    }
+  ],
+  "stories": [
+    {
+      "authorId": "23463f2aba07c3dfd1030973",
+      "title": "First story",
+      "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1632104310/default/default_story_2.jpg",
+      "categories": ["Love", "Horror"],
+      "chapters": [
+        {
+          "content": "This is the first content for my story",
+          "likes": [],
+          "comments": [],
+          "createdAt": "2020-02-10T21:26:46.510Z"
+        }
+      ],
+      "views": [],
+      "isPublished": true,
+      "isComplete": false,
+      "isDeleted": false,
+      "createdAt": "2020-02-10T21:26:46.510Z"
+    },
+    {
+      "authorId": "23463f2aba07c3dfd1030973",
+      "title": "Second story",
+      "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1632104310/default/default_story_3.jpg",
+      "categories": ["Love", "Horror", "test"],
+      "chapters": [
+        {
+          "content": "This is the first content for my story and this is the second story",
+          "likes": ["user1Id", "user2Id"],
+          "comments": [
+            {
+              "authorId": "23463f2aba07c3dfd1030973",
+              "content": "This is a comment to the first part",
+              "likes": [],
+              "createdAt": "2020-02-07T21:26:46.510Z",
+              "isEdited": false
+            },
+            {
+              "authorId": "23463f2aba07c3dfd1030973",
+              "content": "lorem ipsum",
+              "likes": [],
+              "createdAt": "2020-02-07T21:26:46.510Z",
+              "isEdited": false
+            }
+          ],
+          "createdAt": "2020-02-09T21:26:46.510Z"
+        },
+        {
+          "content": "Second chapter for this story which is the second story",
+          "likes": ["user1Id", "user3Id"],
+          "comments": [
+            {
+              "authorId": "23463f2aba07c3dfd1030973",
+              "content": "this is a great second chapter",
+              "likes": [],
+              "createdAt": "2020-02-07T21:26:46.510Z",
+              "isEdited": false
+            }
+          ],
+          "createdAt": "2020-02-09T21:26:46.510Z"
+        },
+        {
+          "content": "Third chapter for this story which is the second story",
+          "likes": ["user1Id"],
+          "comments": [
+            {
+              "authorId": "23463f2aba07c3dfd1030973",
+              "content": "this is a great third chapter",
+              "likes": [],
+              "createdAt": "2020-02-07T21:26:46.510Z",
+              "isEdited": false
+            }
+          ],
+          "createdAt": "2020-02-09T21:26:46.510Z"
+        }
+      ],
+      "views": [],
+      "isPublished": true,
+      "isComplete": false,
+      "isDeleted": false,
+      "createdAt": "2020-02-09T21:26:48.510Z"
+    },
+    {
+      "authorId": "23463f2aba07c3dfd1030973",
+      "title": "Third story",
+      "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1632104310/default/default_story_4.jpg",
+      "categories": ["Horror", "test"],
+      "chapters": [
+        {
+          "content": "This is the first content for my story and this is the third story",
+          "likes": ["testId"],
+          "comments": [],
+          "createdAt": "2020-02-07T21:26:46.510Z"
+        }
+      ],
+      "views": [],
+      "isPublished": true,
+      "isComplete": false,
+      "isDeleted": false,
+      "createdAt": "2020-02-07T21:26:46.510Z"
+    },
+    {
+      "authorId": "23463f2aba07c3dfd1030973",
+      "title": "First story",
+      "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1632104310/default/default_story_2.jpg",
+      "categories": ["Love", "Horror"],
+      "chapters": [
+        {
+          "content": "This is the first content for my story",
+          "likes": [],
+          "comments": [],
+          "createdAt": "2020-02-10T21:26:46.510Z"
+        }
+      ],
+      "views": [],
+      "isPublished": true,
+      "isComplete": false,
+      "isDeleted": false,
+      "createdAt": "2020-02-10T21:26:46.510Z"
+    },
+    {
+      "authorId": "23463f2aba07c3dfd1030973",
+      "title": "First story",
+      "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1632104310/default/default_story_2.jpg",
+      "categories": ["Love", "Horror"],
+      "chapters": [
+        {
+          "content": "This is the first content for my story",
+          "likes": [],
+          "comments": [],
+          "createdAt": "2020-02-10T21:26:46.510Z"
+        }
+      ],
+      "views": [],
+      "isPublished": true,
+      "isComplete": false,
+      "isDeleted": false,
+      "createdAt": "2020-02-10T21:26:46.510Z"
+    },
+    {
+      "authorId": "23463f2aba07c3dfd1030973",
+      "title": "First story",
+      "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1632104310/default/default_story_2.jpg",
+      "categories": ["Love", "Horror"],
+      "chapters": [
+        {
+          "content": "This is the first content for my story",
+          "likes": [],
+          "comments": [],
+          "createdAt": "2020-02-10T21:26:46.510Z"
+        }
+      ],
+      "views": [],
+      "isPublished": true,
+      "isComplete": false,
+      "isDeleted": false,
+      "createdAt": "2020-02-10T21:26:46.510Z"
+    },
+    {
+      "authorId": "23463f2aba07c3dfd1030973",
+      "title": "First story",
+      "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1632104310/default/default_story_2.jpg",
+      "categories": ["Love", "Horror"],
+      "chapters": [
+        {
+          "content": "This is the first content for my story",
+          "likes": [],
+          "comments": [],
+          "createdAt": "2020-02-10T21:26:46.510Z"
+        }
+      ],
+      "views": [],
+      "isPublished": true,
+      "isComplete": false,
+      "isDeleted": false,
+      "createdAt": "2020-02-10T21:26:46.510Z"
     }
   ]
 }
