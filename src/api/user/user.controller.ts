@@ -144,3 +144,29 @@ export const saveUserProfile = async (
     next(error);
   }
 };
+
+export const onboardingFinish = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const user = req.user as UserWithId;
+    if (!user.profile) {
+      return res.status(404).json({
+        message: "Debes tener un perfil creado para saltar este paso",
+      });
+    }
+    await Users.findOneAndUpdate(
+      { _id: user._id },
+      {
+        $set: {
+          "account.onboardingComplete": true,
+        },
+      },
+    );
+    return res.status(200).json({ message: "Información actualizada" });
+  } catch (error) {
+    next(error);
+  }
+};

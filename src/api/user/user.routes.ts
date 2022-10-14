@@ -29,5 +29,6 @@ router.put(
   userController.saveUserGender,
 );
 router.put("/onboarding/profile", requireAuth, userController.saveUserProfile);
+router.put("/onboarding/finish", requireAuth, userController.onboardingFinish);
 
 export default router;
