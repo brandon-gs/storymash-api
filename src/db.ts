@@ -34,7 +34,11 @@ export async function seedDb() {
         const authorId = new ObjectId(story.authorId);
         const createdAt = new Date(story.createdAt);
         const chapters = story.chapters.map((chapter) => {
-          return { ...chapter, createdAt: new Date(chapter.createdAt) };
+          return {
+            ...chapter,
+            _id: new ObjectId(),
+            createdAt: new Date(chapter.createdAt),
+          };
         });
         return { ...story, authorId, chapters, createdAt };
       }),
