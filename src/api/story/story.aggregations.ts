@@ -1,5 +1,10 @@
 export const storyCardAggregations = [
   {
+    $match: {
+      isDeleted: false,
+    },
+  },
+  {
     $lookup: {
       from: "users",
       localField: "authorId",
@@ -25,6 +30,9 @@ export const storyCardAggregations = [
     $addFields: {
       firstChapter: { $first: "$chapters" },
       lastChapter: { $last: "$chapters.createdAt" },
+      totalChapters: {
+        $size: "$chapters",
+      },
       totalLikes: {
         $size: {
           $reduce: {

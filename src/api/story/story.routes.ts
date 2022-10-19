@@ -17,4 +17,8 @@ router
     storyController.createStory,
   );
 
+router
+  .route("/chapter/like")
+  .put(requireAuth, storyController.addLikeStoryChapter);
+
 export default router;
