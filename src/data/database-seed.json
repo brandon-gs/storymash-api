@@ -392,7 +392,7 @@
           "content": "This is the first content for my story",
           "likes": [],
           "comments": [],
-          "createdAt": "2020-02-10T21:26:46.510Z"
+          "createdAt": "2022-10-19T00:09:00.510Z"
         }
       ],
       "views": [],
@@ -403,7 +403,7 @@
     },
     {
       "authorId": "21063f4aba08c3dab1030973",
-      "title": "First story",
+      "title": "This should be the first story",
       "imageUrl": "https://res.cloudinary.com/dsyibmoda/image/upload/v1632104310/default/default_story_2.jpg",
       "categories": ["Love", "Horror"],
       "chapters": [
@@ -411,14 +411,14 @@
           "content": "This is the first content for my story",
           "likes": [],
           "comments": [],
-          "createdAt": "2020-02-10T21:26:46.510Z"
+          "createdAt": "2022-10-17T21:26:46.510Z"
         }
       ],
       "views": [],
       "isPublished": true,
       "isComplete": false,
       "isDeleted": false,
-      "createdAt": "2020-02-10T21:26:46.510Z"
+      "createdAt": "2022-10-17T21:26:46.510Z"
     }
   ]
 }

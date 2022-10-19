@@ -17,13 +17,13 @@ export default async function paginateCollection<CollectionI extends Document>({
 }: PaginateCollectionParams): Promise<Paginate<WithId<CollectionI>>> {
   const offset = currentPage * limit;
   const agg = [
+    ...aggregations,
     {
       $skip: offset,
     },
     {
       $limit: limit,
     },
-    ...aggregations,
   ];
   const cursor = db.collection(collection).aggregate<WithId<CollectionI>>(agg);
 
